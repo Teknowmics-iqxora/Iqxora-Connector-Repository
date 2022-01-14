@@ -29,11 +29,13 @@ The abstract methods are:
 **Input and OutPut Managment**
 
 To work Connector succesfully, have to manage the input and output response properly.
-In method executorTask, EndPointConnectorDetailsForm contain the input and outparams. you can use getter method to get input parameters and output response parameters.
+In method executorTask, _EndPointConnectorDetailsForm_ contain the input and outparams. you can use getter method to get input parameters and output response parameters.
 I/O fiedls are:
 
+```
 private List<ExternalConnectorInputs> externalConnectorInputs;
 private List<ExternalConnectorOutputDetails> externalConnectorOutputDetails;
+```
 
 For submitting response, Should follow the system accepting standards.
 In Responce data the ExternalConnectorOutputDetails must be attached!
@@ -45,11 +47,30 @@ In Responce data the ExternalConnectorOutputDetails must be attached!
 step 1 : Create a java maven application in your IDE
 
 step 2: Add Client library in your pom.xml file
-
+```
 <dependency>
-<groupId>com.teknowmics.smartdocs</groupId>
+<groupId>com.teknowmics.iqxora</groupId>
 <artifactId>ExternalConnectorFramework</artifactId>
-<version>1.0.0-SNAPSHOT</version>
+<version>1.0.0</version>
 </dependency>
+```
 
 follow above mentioned steps, from step 2.
+
+
+**Generate Responce Data**
+
+To complete a task successfully you have to fill mandatory fields. The mandatory fields are
+    1. UniqueJobId - It can get it from _EndPointConnectorDetailsForm_
+    2. Status (SUCCESS/FAILED)
+
+if there is any output details that should responded back to Iqxora then include that in ResponseData
+```
+    ResponseData responceData = new ResponseData();
+    responceData.setUniqueJobId(endPointConnectorDetailsForm.getUniqueJobId());
+    responceData.setOutputDetails(externalConnectorOutputDetails);
+    responceData.setStatus("SUCCESS");
+```
+
+
+
