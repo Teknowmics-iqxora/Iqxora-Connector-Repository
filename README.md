@@ -72,5 +72,38 @@ if there is any output details that should responded back to Iqxora then include
     responceData.setStatus("SUCCESS");
 ```
 
+**Samples**
+
+In this example, a connector created to add a record into an external database, using JDBC.
+
+```
+        try (Connection connection = DriverManager
+                .getConnection(mysqlUrl, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SUPPLIER)) {
+            connection.setAutoCommit(false);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setString(2, supplierName);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, pin);
+            preparedStatement.setString(5, supplierCode);
+            preparedStatement.addBatch();
+            int[] updateCounts = preparedStatement.executeBatch();
+            //System.out.println(Arrays.toString(updateCounts));
+            connection.commit();
+            connection.setAutoCommit(true);
+            return generateResponce(updateCounts, endPointConnectorDetailsForm);
+        } catch (BatchUpdateException batchUpdateException) {
+           LOGGER.error("Error while connecting external database from end connector ", batchUpdateException);
+        } catch (SQLException e) {
+           LOGGER.error("Error while connecting external database from end connector ", e);
+        }
+        
+```
+
+
+    
+
+
+
 
 
