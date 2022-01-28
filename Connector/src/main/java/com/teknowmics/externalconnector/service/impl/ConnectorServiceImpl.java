@@ -6,7 +6,7 @@
 package com.teknowmics.externalconnector.service.impl;
 
 import com.teknowmics.externalconnector.fw.forms.EndPointConnectorDetailsForm;
-import com.teknowmics.externalconnector.fw.forms.ResponceData;
+import com.teknowmics.externalconnector.fw.forms.ResponseData;
 import com.teknowmics.externalconnector.fw.service.Impl.AbstractConnectorPluginServiceImpl;
 
 /**
@@ -16,7 +16,7 @@ import com.teknowmics.externalconnector.fw.service.Impl.AbstractConnectorPluginS
 public class ConnectorServiceImpl extends AbstractConnectorPluginServiceImpl{
 
     @Override
-    protected ResponceData executeTask(EndPointConnectorDetailsForm endPointConnectorDetailsForm) {
+    protected ResponseData executeTask(EndPointConnectorDetailsForm endPointConnectorDetailsForm) {
         throw new UnsupportedOperationException("Not supported yet."); 
         //Add Custom Implementation
     }
